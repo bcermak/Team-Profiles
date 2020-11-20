@@ -15,7 +15,7 @@
 
 
 
-GitHub Repository: https://github.com/bcermak/userDirectory
+GitHub Repository: https://github.com/bcermak/Team-Profiles
 
 Screenshot
 
