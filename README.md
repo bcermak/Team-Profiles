@@ -16,7 +16,7 @@ so that I have quick access to emails and GitHub profiles. When I start the app 
 
 ## Deployed Application ##
 
-GitHub Repository: https://github.com/bcermak/Team-Profiles
+GitHub Repository: https://github.com/bcermak/Team-Profiles<br>
 Video Demo: (coming soon!)
 
 Screenshot
