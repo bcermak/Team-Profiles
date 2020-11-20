@@ -10,8 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const roleTypes = ["Manager", "Engineer", "Intern"]
-
 const teamProfile = [];
 
 const questionList = ([
@@ -31,10 +29,10 @@ const questionList = ([
             name: "email"
         },
         {
-            type: "checkbox",
-            message: "Employee Role: ",
+            type: "list",
             name: "role",
-            choices: roleTypes
+            message: "What is their role?",
+            choices: ["Manager", "Engineer", "Intern"]
         },
         {
             type: "number",
