@@ -71,10 +71,9 @@ inquirer.prompt([
         if(response.role == "Engineer") {
             console.log("success")
             inquirer.prompt(engineerQuestion) 
-        }
+        } 
         if(response.role == "Intern") {
             console.log("success")
             inquirer.prompt(internQuestion) 
         }
      })
-
