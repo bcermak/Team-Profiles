@@ -62,7 +62,7 @@ const questionList = ([
         },
         {
             type: "confirm",
-            name: "new",
+            name: "newEmp",
             message: "Would you like to add another employee?"
         }
     
@@ -72,9 +72,9 @@ const questionList = ([
         inquirer
             .prompt(questionList)
             .then((data) => {
-                if (data.new) {
+                if (data.newEmp) {
                     teamProfile.push(data);
-                    person();
+                    create();
                 } else {
                     console.log("The end is here!");
                     teamProfile.push(data);
