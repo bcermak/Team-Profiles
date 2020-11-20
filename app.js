@@ -12,42 +12,16 @@ const render = require("./lib/htmlRenderer");
 
 const roleTypes = ["Manager", "Engineer", "Intern"]
 
-const managerQuestion = 
-[
-    {
-    type: "input",
-    message: "What is your office number?",
-    name: "officenumber"
-    },
-]
+const teamProfile = [];
 
-const engineerQuestion = 
-[
-    {
-    type: "input",
-    message: "What is your GitHub username?",
-    name: "engineerGitHub"
-    },
-]
-
-const internQuestion = 
-[
-    {
-    type: "input",
-    message: "What school did you graduate from?",
-    name: "internSchool"
-    },
-]
-
-
-inquirer.prompt([
+const questionList = ([
         {
             type: "input",
             message: "Employee Name: ",
             name: "name"
         },
         {
-            type: "input",
+            type: "number",
             message: "Employee ID: ",
             name: "id"
         },
@@ -61,19 +35,52 @@ inquirer.prompt([
             message: "Employee Role: ",
             name: "role",
             choices: roleTypes
+        },
+        {
+            type: "number",
+            name: "officeNumber",
+            message: "What is your office number?",
+            when: (answer) => {
+                return answer.role == "Manager";
+            }
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is your github username?",
+            when: (answer) => {
+                return answer.role == "Engineer";
+            }
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What school do you go to?",
+            when: (answer) => {
+                return answer.role == "Intern";
+            }
+        },
+        {
+            type: "confirm",
+            name: "new",
+            message: "Would you like to add another employee?"
         }
-    ]) .then(function(response) {
-        console.log(response);
-        if(response.role == "Manager") {
-            console.log("success")
-            inquirer.prompt(managerQuestion)
-        }
-        if(response.role == "Engineer") {
-            console.log("success")
-            inquirer.prompt(engineerQuestion) 
-        } 
-        if(response.role == "Intern") {
-            console.log("success")
-            inquirer.prompt(internQuestion) 
-        }
-     })
+    
+    ]) 
+
+    function create() {
+        inquirer
+            .prompt(questionList)
+            .then((data) => {
+                if (data.new) {
+                    teamProfile.push(data);
+                    person();
+                } else {
+                    console.log("The end is here!");
+                    teamProfile.push(data);
+                    fs.writeFileSync(outputPath, render(teamProfile), "utf8");
+                }
+            })
+    }
+    
+   create();
